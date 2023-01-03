@@ -1,11 +1,10 @@
 viewer = pannellum.viewer('panorama', {
     "type": "equirectangular",
-    "panorama": "../images/image.jfif",
+    "panorama": "../images/dehors.png",
     "autoLoad": true,
     "autoRotate": "-1",
     "autoRotateInactivityDelay" : "10000",
     "showZoomCtrl": false,
-    "showFullscreenCtrl": false,
     "compass": false,
     "hotSpots": [
         {
