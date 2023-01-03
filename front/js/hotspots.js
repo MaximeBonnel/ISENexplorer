@@ -1,3 +1,23 @@
+viewer = pannellum.viewer('panorama', {
+    "type": "equirectangular",
+    "panorama": "../images/image.jfif",
+    "autoLoad": true,
+    "autoRotate": "-1",
+    "autoRotateInactivityDelay" : "10000",
+    "showZoomCtrl": false,
+    "showFullscreenCtrl": false,
+    "compass": false,
+    "hotSpots": [
+        {
+            "pitch": 10,
+            "yaw": -20,
+            "cssClass": "custom-hotspot",
+            "createTooltipFunc": hotspot,
+            "createTooltipArgs": "Il est beau le tableau"
+        }
+    ]
+});
+
 // Hot spot creation function
 function hotspot(hotSpotDiv, args) {
     hotSpotDiv.classList.add('custom-tooltip');

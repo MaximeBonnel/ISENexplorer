@@ -7,44 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ISEN Explorer</title>
 
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/hotspots.css">
+
     <!-- Pannellum -->
     <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
-
-    <!-- JS -->
-    <script src="../js/hotspots.js"></script>
 </head>
 
 <body>
-    <style>
-        #panorama {
-            width: 600px;
-            height: 400px;
-        }
-        
-    </style>
-    
     <div id="panorama"></div>
-    <script>
-    pannellum.viewer('panorama', {
-        "type": "equirectangular",
-        "panorama": "../images/image.jfif",
-        "autoLoad": true,
-        "autoRotate": "-1",
-        "autoRotateInactivityDelay" : "10000",
-        "showZoomCtrl": false,
-        "showFullscreenCtrl": false,
-        "compass": false,
-        "hotspots": [
-            {
-                "pitch": 14.1,
-                "yaw": 1.5,
-                "cssClass": "custom-hotspot",
-                "createTooltipFunc": hotspot,
-                "createTooltipArgs": "Baltimore Museum of Art"
-            }
-        ]
-    });
-    </script>
+
+    <script src="../js/hotspots.js"></script>
 </body>
 </html>
