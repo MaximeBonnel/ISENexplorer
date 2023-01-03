@@ -1,17 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!-- Latest compiled and minified JavaScript -->
+    <title>ISEN Explorer</title>
+
+    <!-- Pannellum -->
     <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
-    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
 
+    <!-- JS -->
+    <script src="../js/hotspots.js"></script>
 </head>
+
 <body>
-    <iframe width="600" height="400" allowfullscreen style="border-style:none;" src="https://cdn.pannellum.org/2.5/pannellum.htm#panorama=https://pannellum.org/images/alma.jpg"></iframe>
+    <style>
+        #panorama {
+            width: 600px;
+            height: 400px;
+        }
+        
+    </style>
+    
+    <div id="panorama"></div>
+    <script>
+    pannellum.viewer('panorama', {
+        "type": "equirectangular",
+        "panorama": "../images/image.jfif",
+        "autoLoad": true,
+        "autoRotate": "-1",
+        "autoRotateInactivityDelay" : "10000",
+        "showZoomCtrl": false,
+        "showFullscreenCtrl": false,
+        "compass": false,
+        "hotspots": [
+            {
+                "pitch": 14.1,
+                "yaw": 1.5,
+                "cssClass": "custom-hotspot",
+                "createTooltipFunc": hotspot,
+                "createTooltipArgs": "Baltimore Museum of Art"
+            }
+        ]
+    });
+    </script>
 </body>
 </html>
