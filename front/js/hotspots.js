@@ -1,9 +1,11 @@
 viewer = pannellum.viewer('panorama', {
-    "autoLoad": true,
 
     "default": {
         "firstScene": window.location.href.split('/')[3],
         "sceneFadeDuration": 1000,
+        "autoLoad": true,
+        "hotSpotDebug": true,
+
     },
 
     "scenes": {
@@ -18,7 +20,6 @@ viewer = pannellum.viewer('panorama', {
             "yaw": -160,
             "type": "equirectangular",
             "panorama": "../images/dehors.png",
-            "hotSpotDebug": true,
             "hotSpots": [
                 {
                     "pitch": 5,
@@ -37,12 +38,11 @@ viewer = pannellum.viewer('panorama', {
             "showZoomCtrl": false,
             "compass": false,
             "title": "Hall Principal",
-            "hfov":120,
+            "hfov": 120,
             "yaw": 39,
-            "pitch":-10,
+            "pitch": -10,
             "type": "equirectangular",
             "panorama": "../images/hall.png",
-            "hotSpotDebug": true,
             "hotSpots": [
                 {
                     "pitch": -6,
@@ -85,7 +85,7 @@ viewer = pannellum.viewer('panorama', {
             "pitch": -35,
             "type": "equirectangular",
             "panorama": "../images/accueil.png",
-            "hotSpotDebug": true,
+
             "hotSpots": [
                 {
                     "pitch": -18,
@@ -108,7 +108,7 @@ viewer = pannellum.viewer('panorama', {
             "pitch": 2,
             "type": "equirectangular",
             "panorama": "../images/couloir1.png",
-            "hotSpotDebug": true,
+
             "hotSpots": [
                 {
                     "pitch": -9,
@@ -160,7 +160,7 @@ viewer = pannellum.viewer('panorama', {
             "pitch": -10,
             "type": "equirectangular",
             "panorama": "../images/couloir2.png",
-            "hotSpotDebug": true,
+
             "hotSpots": [
                 {
                     "pitch": -19,
@@ -176,7 +176,7 @@ viewer = pannellum.viewer('panorama', {
                     "text": "Reculer",
                     "sceneId": "couloir1"
                 }
-              
+
             ]
         },
         "bde": {
@@ -190,7 +190,7 @@ viewer = pannellum.viewer('panorama', {
             "pitch": -16,
             "type": "equirectangular",
             "panorama": "../images/bde.png",
-            "hotSpotDebug": true,
+
             "hotSpots": [
                 {
                     "pitch": -12,
@@ -199,7 +199,7 @@ viewer = pannellum.viewer('panorama', {
                     "text": "Sortir",
                     "sceneId": "couloir1"
                 },
-         
+
             ]
         },
         "jnd": {
@@ -213,7 +213,7 @@ viewer = pannellum.viewer('panorama', {
             "pitch": -16,
             "type": "equirectangular",
             "panorama": "../images/jnd.png",
-            "hotSpotDebug": true,
+
             "hotSpots": [
                 {
                     "pitch": -7,
@@ -222,7 +222,7 @@ viewer = pannellum.viewer('panorama', {
                     "text": "Sortir",
                     "sceneId": "couloir2"
                 },
-         
+
             ]
         },
         "8eme": {
@@ -236,7 +236,7 @@ viewer = pannellum.viewer('panorama', {
             "pitch": -10,
             "type": "equirectangular",
             "panorama": "../images/8eme.png",
-            "hotSpotDebug": true,
+
             "hotSpots": [
                 {
                     "pitch": -12,
@@ -259,7 +259,7 @@ viewer = pannellum.viewer('panorama', {
                     "text": "Descendre",
                     "sceneId": "couloir1"
                 }
-         
+
             ]
         },
         "meeting": {
@@ -273,7 +273,7 @@ viewer = pannellum.viewer('panorama', {
             "pitch": -16,
             "type": "equirectangular",
             "panorama": "../images/meeting.png",
-            "hotSpotDebug": true,
+
             "hotSpots": [
                 {
                     "pitch": -21,
@@ -282,7 +282,7 @@ viewer = pannellum.viewer('panorama', {
                     "text": "Sortir",
                     "sceneId": "8eme"
                 },
-         
+
             ]
         },
         "biblio": {
@@ -296,7 +296,7 @@ viewer = pannellum.viewer('panorama', {
             "pitch": -16,
             "type": "equirectangular",
             "panorama": "../images/biblio.png",
-            "hotSpotDebug": true,
+
             "hotSpots": [
                 {
                     "pitch": -7,
@@ -305,7 +305,7 @@ viewer = pannellum.viewer('panorama', {
                     "text": "Sortir",
                     "sceneId": "8eme"
                 },
-         
+
             ]
         },
         "piano": {
@@ -319,7 +319,7 @@ viewer = pannellum.viewer('panorama', {
             "pitch": -16,
             "type": "equirectangular",
             "panorama": "../images/piano.png",
-            "hotSpotDebug": true,
+
             "hotSpots": [
                 {
                     "pitch": -13,
@@ -342,7 +342,7 @@ viewer = pannellum.viewer('panorama', {
                     "text": "Adicode",
                     "sceneId": "adicode"
                 },
-         
+
             ]
         },
         "adicode": {
@@ -356,7 +356,6 @@ viewer = pannellum.viewer('panorama', {
             "pitch": -16,
             "type": "equirectangular",
             "panorama": "../images/adicode.png",
-            "hotSpotDebug": true,
             "hotSpots": [
                 {
                     "pitch": -6,
@@ -365,7 +364,7 @@ viewer = pannellum.viewer('panorama', {
                     "text": "Sortir",
                     "sceneId": "piano"
                 },
-         
+
             ]
         },
         "fab": {
@@ -379,7 +378,7 @@ viewer = pannellum.viewer('panorama', {
             "pitch": -16,
             "type": "equirectangular",
             "panorama": "../images/fab.png",
-            "hotSpotDebug": true,
+
             "hotSpots": [
                 {
                     "pitch": -22,
@@ -388,19 +387,38 @@ viewer = pannellum.viewer('panorama', {
                     "text": "Sortir",
                     "sceneId": "piano"
                 },
-         
+
             ]
         },
     }
 });
-
-// Hot spot creation function
-function hotspot(hotSpotDiv, args) {
-    hotSpotDiv.classList.add('custom-tooltip');
-    var span = document.createElement('span');
-    span.innerHTML = args;
-    hotSpotDiv.appendChild(span);
-    span.style.width = span.scrollWidth - 20 + 'px';
-    span.style.marginLeft = -(span.scrollWidth - hotSpotDiv.offsetWidth) / 2 + 'px';
-    span.style.marginTop = -span.scrollHeight - 12 + 'px';
+function afficherPos(){
+    currentPitch = viewer.getPitch();
+    currentYaw = viewer.getYaw();
+    viewer.addHotSpot({
+        "pitch": currentPitch,
+        "yaw": currentYaw,
+        "type": "scene",
+        "text": "nouvelleScene",
+        "sceneId": "test"},
+        viewer.getScene());
+    viewer.addScene('test', {
+        "type": "equirectangular",
+        "panorama": "../images/bde.;",
+        "autoRotate": "-1",
+        "autoRotate": false,
+        "showZoomCtrl": false,
+        "compass": false
+    });  
 };
+
+
+var selectElmt = document.getElementById("ListeLieux");
+selectElmt.addEventListener("change", function() {
+    let lieux = selectElmt.value;
+    console.log(lieux);
+});
+
+let button = document.getElementById('button');
+button.addEventListener("click", afficherPos);
+
