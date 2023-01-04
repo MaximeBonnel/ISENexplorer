@@ -7,16 +7,16 @@ const bdd = require('./back/database');
 
 // BDD
 mongoose.set('strictQuery', true);
-mongoose.connect("mongodb://localhost:27017/ISENexplorer", err => {
-    if(!err) console.log('bdd connecté');
+mongoose.connect("mongodb+srv://admin:thisisasecurepass@isenexplorer.ww6hngj.mongodb.net/Users?retryWrites=true&w=majority", err => {
+    if (!err) console.log('bdd connecté');
     else console.log('erreur bdd');
 })
 
 const connectionSchema = new mongoose.Schema({
-    id:String,
-    psw:String
+    id: String,
+    psw: String
 });
-const connectionModel = new mongoose.model("user", connectionSchema);
+const connectionModel = new mongoose.model("info", connectionSchema); // 'infos' is the name of the collection in db
 
 http.listen(4200, () => {
     console.log('Serveur lancé sur le port 4200');
@@ -76,10 +76,6 @@ app.get("/connection", (req, res) => {
 io.on('connection', (socket) => {
     console.log('utilisateur connecté');
 });
-
-// BDD
-/*var psw = require('./back/database').getPassword
-console.log(psw(mongoose, 'Maxime'));*/
 
 // Après la connection au port
 io.on('connection', (socket) => {
