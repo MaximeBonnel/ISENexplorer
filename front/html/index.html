@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -20,11 +20,23 @@
 
 <body>
     <div id="panorama"></div>
-
-    <script src="../js/hotspots.js"></script>
+    <button id="button">Appuie</button>
+    <select id="ListeLieux"  >
+        <option value="8eme">8EME</option>
+        <option value="accueil">ACCUEIL</option>
+        <option value="adicode">ADICODE</option>
+        <option value="biblio">BIBLIOTHEQUE</option>
+        <option value="couloir1">COULOIR1</option>
+        <option value="couloir2">COULOIR2</option>
+        <option value="dehors">DEHORS</option>
+        <option value="fab">FAB</option>
+        <option value="hall">HALL</option>
+        <option value="jnd">JND</option>
+        <option value="meeting">MEETING</option>
+        <option value="piano">PIANO</option>
+    </select>
+    
 </body>
-
-<script>
-    let socket = io();
-</script>
+<script src="../js/hotspots.js"></script>
+<script>let socket = io();</script>
 </html>
