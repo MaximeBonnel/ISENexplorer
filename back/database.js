@@ -6,10 +6,15 @@ module.exports = {
         });
         
         const connectionModel = new mongoose.model("user", connectionSchema);
-        
-        connectionModel.find({id: id}, (err, users) => {
+
+        var resp;
+        connectionModel.find({id: id}, (err, users, resp) => {
             if (err) return handleError(err);
-            else console.log(users);
+            else {
+                resp = users[0].psw;
+            }
         });
+
+        return users;
     }
-}
+};

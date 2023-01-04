@@ -1,7 +1,7 @@
 const app = require('express')();
 const http = require('http').createServer(app);
+const io = require('socket.io')(http);
 const mongoose = require('mongoose');
-const bdd = require('./back/database');
 
 // BDD
 mongoose.set('strictQuery', true);
@@ -10,13 +10,15 @@ mongoose.connect("mongodb://localhost:27017/ISENexplorer", err => {
     else console.log('db error');
 })
 
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/front/html/index.html');
-});
-
 http.listen(4200, () => {
     console.log('Serveur lancé sur le port 4200');
 });
 
+// redirige vers la page d'accueil
+app.get("/", (req, res) => {
+    res.sendFile(__dirname + '/front/html/index.html');
+});
+
 // BDD
-bdd.getPassword(mongoose, 'Maxime');
+var psw = require('./back/database').getPassword
+console.log(psw(mongoose, 'Maxime'));
