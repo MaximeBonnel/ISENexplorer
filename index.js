@@ -29,6 +29,45 @@ app.use(express.static(__dirname + '/front/'));
 app.get("/", (req, res) => {
     res.sendFile(__dirname + '/front/html/index.html');
 });
+app.get("/exterieur", (req, res) => {
+    res.sendFile(__dirname + '/front/html/index.html');
+});
+app.get("/hall", (req, res) => {
+    res.sendFile(__dirname + '/front/html/index.html');
+});
+app.get("/accueil", (req, res) => {
+    res.sendFile(__dirname + '/front/html/index.html');
+});
+app.get("/couloir1", (req, res) => {
+    res.sendFile(__dirname + '/front/html/index.html');
+});
+app.get("/couloir2", (req, res) => {
+    res.sendFile(__dirname + '/front/html/index.html');
+});
+app.get("/bde", (req, res) => {
+    res.sendFile(__dirname + '/front/html/index.html');
+});
+app.get("/jnd", (req, res) => {
+    res.sendFile(__dirname + '/front/html/index.html');
+});
+app.get("/8eme", (req, res) => {
+    res.sendFile(__dirname + '/front/html/index.html');
+});
+app.get("/meeting", (req, res) => {
+    res.sendFile(__dirname + '/front/html/index.html');
+});
+app.get("/biblio", (req, res) => {
+    res.sendFile(__dirname + '/front/html/index.html');
+});
+app.get("/piano", (req, res) => {
+    res.sendFile(__dirname + '/front/html/index.html');
+});
+app.get("/adicode", (req, res) => {
+    res.sendFile(__dirname + '/front/html/index.html');
+});
+app.get("/fab", (req, res) => {
+    res.sendFile(__dirname + '/front/html/index.html');
+});
 app.get("/connection", (req, res) => {
     res.sendFile(__dirname + '/front/html/signIn.html');
 });

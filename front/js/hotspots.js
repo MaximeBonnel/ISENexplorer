@@ -1,8 +1,8 @@
 viewer = pannellum.viewer('panorama', {
     "autoLoad": true,
-    
+
     "default": {
-        "firstScene": "exterieur",
+        "firstScene": window.location.href.split('/')[3],
         "sceneFadeDuration": 1000,
     },
 
