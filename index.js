@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
-const mongoose = require('mongoose');
+const mongoose = require('mongoose');const { uploadImage } = require('./back/database');
 const bdd = require('./back/database');
 
 // BDD
@@ -12,6 +12,7 @@ mongoose.connect("mongodb+srv://admin:thisisasecurepass@isenexplorer.ww6hngj.mon
     else console.log('erreur bdd');
 })
 
+// Collections bdd
 const connectionSchema = new mongoose.Schema({
     id: String,
     psw: String
@@ -71,6 +72,9 @@ app.get("/fab", (req, res) => {
 app.get("/connection", (req, res) => {
     res.sendFile(__dirname + '/front/html/signIn.html');
 });
+app.get("/admin", (req, res) => {
+    res.sendFile(__dirname + '/front/html/admin.html');
+});
 
 // Sockets
 io.on('connection', (socket) => {
@@ -88,5 +92,10 @@ io.on('connection', (socket) => {
     // Mot de passe
     socket.on("password", (info) => {
         bdd.getPassword(connectionModel, socket, info[0]);
+    });
+
+    // Upload image
+    socket.on("upload", (file) => {
+        uploadImage(file[0], file[1]);
     });
 });
