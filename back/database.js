@@ -89,12 +89,14 @@ module.exports = {
     getImagesNames: function() {
         client.connect(err => {
             const db = client.db("Images");
-            const coll = db.collection("images");
+            const coll = db.collection("image");
             if (err) throw err;
 
-            const cursor = coll.find({});
+            const cursor = coll.find();
 
-            console.log(cursor);
+            cursor.forEach((name) => {
+                console.log(name.name);
+            });
         });
     }
 }
