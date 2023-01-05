@@ -82,10 +82,7 @@ app.get("/admin", (req, res) => {
     res.sendFile(__dirname + '/front/html/admin.html');
 });
 
-// Sockets
-io.on('connection', (socket) => {
-    console.log('utilisateur connecté');
-});
+bdd.getImagesNames();
 
 // Après la connection au port
 io.on('connection', (socket) => {
