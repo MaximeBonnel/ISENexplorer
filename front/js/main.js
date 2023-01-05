@@ -1,15 +1,18 @@
-function upload(files) {
-    socket.emit("upload", [files[0], 'imageClement.jpg']);
-};
+if (window.location.href.split('/')[3] != '') {
+    console.log(window.location.href.split('/')[3]);
+    var scene = window.location.href.split('/')[3];
+} else {
+    var scene = "exterieur";
+}
 
-/* Pannellumm */
 viewer = pannellum.viewer('panorama', {
-
     "default": {
-        "firstScene": "exterieur",
+        
+        "firstScene": scene,
         "sceneFadeDuration": 1000,
         "autoLoad": true,
-        "hotSpotDebug": true,
+        //Pour avoir les positions
+        //"hotSpotDebug": true,
     },
 
     "scenes": {
@@ -47,6 +50,7 @@ viewer = pannellum.viewer('panorama', {
             "pitch": -10,
             "type": "equirectangular",
             "panorama": "../images/hall.png",
+
             "hotSpots": [
                 {
                     "pitch": -6,
@@ -397,75 +401,14 @@ viewer = pannellum.viewer('panorama', {
     }
 });
 
-/*
-viewer = pannellum.viewer('panorama', {
-    "default": {
-        "firstScene": "default_scene_start",
-        "title": "default_title",
-        "author": "default_author",
-        "sceneFadeDuration": 1000,
-        "hotSpotDebug": true,
-        "autoLoad": true,
-        "compass": false
-    },
-    "scenes": {
-        "default_scene_start": {
-            "title": "default_title",
-            "hfov": 120,
-            "pitch": -3,
-            "yaw": 117,
-            "type": "equirectangular",
-            "panorama": "img/" + this.files[0].name
-        }
-    }
-});
+// Hot spot creation function 
 
-for (var i = 1; i < this.files.length; ++i) {
-    var inFile = this.files[i];
-    viewer.addScene(inFile.name, {"panorama": "../images/" + inFile.name});
-}
-
-$('body').on('click', 'button', function() {
-    let inputText = "example hotspot text";
-    let currentPitch = viewer.getPitch();
-    let currentYaw = viewer.getYaw();
-    viewer.addHotSpot({"pitch":currentPitch, "yaw":currentYaw, "type":"info", "text":inputText});
-});
-*/
-
-
-
-let posi = document.getElementById('button');
-posi.addEventListener('click', function () {
-    document.getElementById('pitch').innerHTML = 'Pitch: ' + viewer.getPitch();
-    document.getElementById('yaw').innerHTML = 'Yaw: ' + viewer.getYaw();
-});
-
-let admin = document.getElementById('admin-button');
-admin.addEventListener('click', function () {
-    currentPitch = viewer.getPitch();
-    currentYaw = viewer.getYaw();
-    //viewer.addScene("test", { "panorama": "../images/test.jpg", "hotSpots": [] });
-    viewer.addHotSpot({ "pitch": currentPitch, "yaw": currentYaw, "type": "scene", "text": "je suis un crack", "sceneId": "test" }, viewer.getScene());
-
-});
-x
-const panorama = document.getElementById("panorama");
-const file = document.getElementById("file");
-function displayPhoto(url, filename) {
-    viewer.addScene(filename, { "panorama": url, "autoLoad": true, "hotSpots": [] });
-}
-file.addEventListener("change", function (e) {
-    const file = e.target.files[0];
-    displayPhoto(URL.createObjectURL(file), file.name);
-});
-
-
-// var currentPitch = v.getPitch();
-  //      var currentYaw = v.getYaw();
-  //    v.addHotSpot({"pitch":currentPitch, "yaw":currentYaw, "type":"info", "text":inputText});
-
-
-
-//yourViewer.addScene("yourSceneName", { "panorama": "/path/to/img/img.jpg", "hotSpots": [] });
-
+function hotspot(hotSpotDiv, args) {
+    hotSpotDiv.classList.add('custom-tooltip');
+    var span = document.createElement('span');
+    span.innerHTML = args;
+    hotSpotDiv.appendChild(span);
+    span.style.width = span.scrollWidth - 20 + 'px';
+    span.style.marginLeft = -(span.scrollWidth - hotSpotDiv.offsetWidth) / 2 + 'px';
+    span.style.marginTop = -span.scrollHeight - 12 + 'px';
+};

@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
-const mongoose = require('mongoose');const { uploadImage } = require('./back/database');
+const mongoose = require('mongoose');
 const bdd = require('./back/database');
 
 // BDD
@@ -102,6 +102,6 @@ io.on('connection', (socket) => {
 
     // Upload image
     socket.on("upload", (file) => {
-        uploadImage(file[0], file[1]);
+        bdd.uploadImage(file[0], file[1]);
     });
 });
