@@ -1,5 +1,9 @@
 function upload(files) {
-    socket.emit("upload", [files[0], 'imageClement.jpg']);
+    let img = document.getElementById("nomImg").value;
+
+    if (img != ''){
+        socket.emit("upload", [files[0], img]);
+    }
 };
 
 v = pannellum.viewer('panorama', {
@@ -423,9 +427,8 @@ v = pannellum.viewer('panorama', {
     }
 });
 
-
-let admin = document.getElementById('admin-button');
-admin.addEventListener('click', function () {
+let adminButton = document.getElementById('admin-button');
+adminButton.addEventListener('click', function () {
     currentPitch = v.getPitch();
     currentYaw = v.getYaw();
     v.addScene("test", {
@@ -435,5 +438,4 @@ admin.addEventListener('click', function () {
         "compass": false, "panorama": "../images/bde.png", "hotSpots": []
     });
     v.addHotSpot({ "pitch": currentPitch, "yaw": currentYaw, "type": "scene", "text": "je suis un crack", "sceneId": "test" }, v.getScene());
-
 });
