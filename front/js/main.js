@@ -5,10 +5,10 @@ if (window.location.href.split('/')[3] != '') {
     var scene = "exterieur";
 }
 
-viewer = pannellum.viewer('panorama', {
+v = pannellum.viewer('panorama', {
     "default": {
-        
-        "firstScene": scene,
+
+        "firstScene": "exterieur",
         "sceneFadeDuration": 1000,
         "autoLoad": true,
         //Pour avoir les positions
@@ -33,10 +33,10 @@ viewer = pannellum.viewer('panorama', {
                     "yaw": -160,
                     "type": "scene",
                     "text": "Rentrer dans le hall",
-                    "sceneId": "hall"
+                    "sceneId": "hall",
+                    "id": "hotspot-1",
                 }
-            ]
-
+            ],
         },
 
         "hall": {
@@ -50,35 +50,38 @@ viewer = pannellum.viewer('panorama', {
             "pitch": -10,
             "type": "equirectangular",
             "panorama": "../images/hall.png",
-
             "hotSpots": [
                 {
                     "pitch": -6,
                     "yaw": 183,
                     "type": "scene",
                     "text": "Sortir de l'ISEN",
-                    "sceneId": "exterieur"
+                    "sceneId": "exterieur",
+                    "id": "hotspot-2"
                 },
                 {
                     "pitch": -13,
                     "yaw": 138,
                     "type": "scene",
                     "text": "Rentrer dans l'accueil",
-                    "sceneId": "accueil"
+                    "sceneId": "accueil",
+                    "id": "hotspot-3"
                 },
                 {
                     "pitch": -16,
                     "yaw": 55,
                     "type": "scene",
                     "text": "Avancer dans le couloir",
-                    "sceneId": "couloir1"
+                    "sceneId": "couloir1",
+                    "id": "hotspot-4"
                 },
                 {
                     "pitch": -13,
                     "yaw": -6,
                     "type": "scene",
                     "text": "Salle de repos",
-                    "sceneId": "piano"
+                    "sceneId": "piano",
+                    "id": "hotspot-5"
                 }
             ]
         },
@@ -100,7 +103,8 @@ viewer = pannellum.viewer('panorama', {
                     "yaw": -33,
                     "type": "scene",
                     "text": "Sortir de l'accueil",
-                    "sceneId": "hall"
+                    "sceneId": "hall",
+                    "id": "hotspot-6"
                 },
 
             ]
@@ -123,28 +127,32 @@ viewer = pannellum.viewer('panorama', {
                     "yaw": 33,
                     "type": "scene",
                     "text": "Revenir au Hall Principal",
-                    "sceneId": "hall"
+                    "sceneId": "hall",
+                    "id": "hotspot-7"
                 },
                 {
                     "pitch": -10,
                     "yaw": -143,
                     "type": "scene",
                     "text": "Avancer",
-                    "sceneId": "couloir2"
+                    "sceneId": "couloir2",
+                    "id": "hotspot-8"
                 },
                 {
                     "pitch": 21,
                     "yaw": 212,
                     "type": "scene",
                     "text": "Monter",
-                    "sceneId": "8eme"
+                    "sceneId": "8eme",
+                    "id": "hotspot-9"
                 },
                 {
                     "pitch": -17,
                     "yaw": -20,
                     "type": "scene",
                     "text": "BDE",
-                    "sceneId": "bde"
+                    "sceneId": "bde",
+                    "id": "hotspot-10"
                 }
                 ,
                 {
@@ -152,7 +160,8 @@ viewer = pannellum.viewer('panorama', {
                     "yaw": 50,
                     "type": "scene",
                     "text": "Salle de Repos",
-                    "sceneId": "piano"
+                    "sceneId": "piano",
+                    "id": "hotspot-11"
                 }
 
             ]
@@ -175,14 +184,16 @@ viewer = pannellum.viewer('panorama', {
                     "yaw": 170,
                     "type": "scene",
                     "text": "Amphithéâtre",
-                    "sceneId": "jnd"
+                    "sceneId": "jnd",
+                    "id": "hotspot-12"
                 },
                 {
                     "pitch": -9,
                     "yaw": 74,
                     "type": "scene",
                     "text": "Reculer",
-                    "sceneId": "couloir1"
+                    "sceneId": "couloir1",
+                    "id": "hotspot-13"
                 }
 
             ]
@@ -205,9 +216,9 @@ viewer = pannellum.viewer('panorama', {
                     "yaw": 103,
                     "type": "scene",
                     "text": "Sortir",
-                    "sceneId": "couloir1"
-                },
-
+                    "sceneId": "couloir1",
+                    "id": "hotspot-14"
+                }
             ]
         },
         "jnd": {
@@ -228,7 +239,8 @@ viewer = pannellum.viewer('panorama', {
                     "yaw": 147,
                     "type": "scene",
                     "text": "Sortir",
-                    "sceneId": "couloir2"
+                    "sceneId": "couloir2",
+                    "id": "hotspot-15"
                 },
 
             ]
@@ -251,21 +263,24 @@ viewer = pannellum.viewer('panorama', {
                     "yaw": 31,
                     "type": "scene",
                     "text": "Salle de Meeting",
-                    "sceneId": "meeting"
+                    "sceneId": "meeting",
+                    "id": "hotspot-16"
                 },
                 {
                     "pitch": -6,
                     "yaw": 135,
                     "type": "scene",
                     "text": "Bibliothèque",
-                    "sceneId": "biblio"
+                    "sceneId": "biblio",
+                    "id": "hotspot-17"
                 },
                 {
                     "pitch": -21,
                     "yaw": -69,
                     "type": "scene",
                     "text": "Descendre",
-                    "sceneId": "couloir1"
+                    "sceneId": "couloir1",
+                    "id": "hotspot-18"
                 }
 
             ]
@@ -288,7 +303,8 @@ viewer = pannellum.viewer('panorama', {
                     "yaw": -207,
                     "type": "scene",
                     "text": "Sortir",
-                    "sceneId": "8eme"
+                    "sceneId": "8eme",
+                    "id": "hotspot-19"
                 },
 
             ]
@@ -311,7 +327,8 @@ viewer = pannellum.viewer('panorama', {
                     "yaw": -7,
                     "type": "scene",
                     "text": "Sortir",
-                    "sceneId": "8eme"
+                    "sceneId": "8eme",
+                    "id": "hotspot-20"
                 },
 
             ]
@@ -334,21 +351,24 @@ viewer = pannellum.viewer('panorama', {
                     "yaw": 61,
                     "type": "scene",
                     "text": "Couloir",
-                    "sceneId": "couloir1"
+                    "sceneId": "couloir1",
+                    "id": "hotspot-21"
                 },
                 {
                     "pitch": -17,
                     "yaw": -119,
                     "type": "scene",
                     "text": "Fab Lab",
-                    "sceneId": "fab"
+                    "sceneId": "fab",
+                    "id": "hotspot-22"
                 },
                 {
                     "pitch": -10,
                     "yaw": 28,
                     "type": "scene",
                     "text": "Adicode",
-                    "sceneId": "adicode"
+                    "sceneId": "adicode",
+                    "id": "hotspot-23"
                 },
 
             ]
@@ -370,7 +390,8 @@ viewer = pannellum.viewer('panorama', {
                     "yaw": 133,
                     "type": "scene",
                     "text": "Sortir",
-                    "sceneId": "piano"
+                    "sceneId": "piano",
+                    "id": "hotspot-24"
                 },
 
             ]
@@ -393,7 +414,9 @@ viewer = pannellum.viewer('panorama', {
                     "yaw": 133,
                     "type": "scene",
                     "text": "Sortir",
-                    "sceneId": "piano"
+                    "sceneId": "piano",
+                    "id": "hotspot-25"
+
                 },
 
             ]
