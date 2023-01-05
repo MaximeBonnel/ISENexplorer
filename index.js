@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
 const http = require('http').createServer(app);
-const io = require('socket.io')(http);
+const io = require('socket.io')(http, {
+    maxHttpBufferSize: 10 * 1024 * 1024  // 10 Mo
+});
 const mongoose = require('mongoose');
 const bdd = require('./back/database');
 
@@ -17,9 +19,6 @@ const connectionSchema = new mongoose.Schema({
     id: String,
     psw: String
 });
-
-// limitation des sockets a 10Mo
-io.setMaxListeners(10 * 1024 * 1024);
 
 // 'infos' is the name of the collection in db Users
 const connectionModel = new mongoose.model("info", connectionSchema);
@@ -90,6 +89,7 @@ bdd.getImagesNames();
 
 // Après la connection au port
 io.on('connection', (socket) => {
+    console.log("Utilisateur connecté");
 
     // Nom d'utilisateur
     socket.on("username", (info) => {
