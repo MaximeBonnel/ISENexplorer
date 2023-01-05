@@ -77,7 +77,9 @@ app.get("/fab", (req, res) => {
 app.get("/connection", (req, res) => {
     res.sendFile(__dirname + '/front/html/signIn.html');
 });
-
+app.get("/admin", (req, res) => {
+    res.sendFile(__dirname + '/front/html/admin.html');
+});
 // Sockets
 io.on('connection', (socket) => {
     console.log('utilisateur connecté');
