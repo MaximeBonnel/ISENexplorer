@@ -44,22 +44,12 @@
             </div>
         </header>
     </container>
-
-
-  
-
    
     <div  class="  vh-100 d-flex justify-content-center align-items-center "> 
 
         <figure class=" figure-img img-fluid rounded border-warning" id="panorama"></figure >
             <button class="button-admin" id="admin-button">Button</button>
      </div>
-
-
-    <script type="text/javascript" src="../js/pannellum.js"></script>
-    <script type="text/javascript" src="../js/libpannellum.js"></script>
-
-    <script type="text/javascript" src="../js/admin.js"></script>
 
     <select id="ListeLieux"  >
         <option value="8eme">8EME</option>
@@ -75,11 +65,12 @@
         <option value="meeting">MEETING</option>
         <option value="piano">PIANO</option>
     </select>
-
+    <input type="text" name="nomImg" id="nomImg">
     <input type="file" onchange="upload(this.files)" />
 </body>
 
-
+<script type="text/javascript" src="../js/pannellum.js"></script>
+<script type="text/javascript" src="../js/libpannellum.js"></script>
 <script>let socket = io();</script>
 <script type="text/javascript" src="../js/admin.js"></script>
 
