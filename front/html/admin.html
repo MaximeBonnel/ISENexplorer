@@ -10,9 +10,32 @@
 
         <!-- Socket Io -->
         <script src="/socket.io/socket.io.js"></script>
+
+        <!-- Pannellum -->
+        <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
     </head>
 
     <body>
+        <div id="panorama"></div>
+
+        <button id="button">Appuie</button>
+
+        <select id="ListeLieux"  >
+            <option value="8eme">8EME</option>
+            <option value="accueil">ACCUEIL</option>
+            <option value="adicode">ADICODE</option>
+            <option value="biblio">BIBLIOTHEQUE</option>
+            <option value="couloir1">COULOIR1</option>
+            <option value="couloir2">COULOIR2</option>
+            <option value="dehors">DEHORS</option>
+            <option value="fab">FAB</option>
+            <option value="hall">HALL</option>
+            <option value="jnd">JND</option>
+            <option value="meeting">MEETING</option>
+            <option value="piano">PIANO</option>
+        </select>
+
         <input type="file" onchange="upload(this.files)" />
     </body>
 
