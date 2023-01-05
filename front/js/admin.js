@@ -1,8 +1,9 @@
-function upload(files) {
-    let img = document.getElementById("nomImg").value;
+let img = document.getElementById("nomImg");
 
-    if (img != ''){
-        socket.emit("upload", [files[0], img]);
+function upload(files) {
+    let nomImg = img.value;
+    if (nomImg != ''){
+        socket.emit("upload", [files[0], nomImg]);
     }
 };
 
@@ -429,13 +430,16 @@ v = pannellum.viewer('panorama', {
 
 let adminButton = document.getElementById('admin-button');
 adminButton.addEventListener('click', function () {
+    let nomImg = img.value;
+    console.log(nomImg);
     currentPitch = v.getPitch();
     currentYaw = v.getYaw();
+    v.addHotSpot({ "pitch": currentPitch, "yaw": currentYaw, "type": "scene", "text": "je suis un crack", "sceneId": "test" }, v.getScene());
     v.addScene("test", {
         "autoRotate": "-1",
         "autoRotate": false,
         "showZoomCtrl": false,
-        "compass": false, "panorama": "../images/bde.png", "hotSpots": []
+        "compass": false, 
+        "panorama": "../images/" + nomImg
     });
-    v.addHotSpot({ "pitch": currentPitch, "yaw": currentYaw, "type": "scene", "text": "je suis un crack", "sceneId": "test" }, v.getScene());
 });
