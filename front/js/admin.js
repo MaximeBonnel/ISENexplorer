@@ -2,6 +2,61 @@ function upload(files) {
     socket.emit("upload", [files[0], 'imageClement.jpg']);
 };
 
+/*
+let posi = document.getElementById('button');
+posi.addEventListener('click', function () {
+    document.getElementById('pitch').innerHTML = 'Pitch: ' + viewer.getPitch();
+    document.getElementById('yaw').innerHTML = 'Yaw: ' + viewer.getYaw();
+});
+
+let admin = document.getElementById('admin-button');
+admin.addEventListener('click', function () {
+    currentPitch = viewer.getPitch();
+    currentYaw = viewer.getYaw();
+    //viewer.addScene("test", { "panorama": "../images/test.jpg", "hotSpots": [] });
+    viewer.addHotSpot({ "pitch": currentPitch, "yaw": currentYaw, "type": "scene", "text": "je suis un crack", "sceneId": "test" }, viewer.getScene());
+
+});
+
+const panorama = document.getElementById("panorama");
+const file = document.getElementById("file");
+file.addEventListener("change", function (e) {
+    const file = e.target.files[0];
+    displayPhoto(URL.createObjectURL(file), file.name);
+});
+
+
+function afficherPos() {
+    currentPitch = viewer.getPitch();
+    currentYaw = viewer.getYaw();
+    viewer.addHotSpot({
+        "pitch": currentPitch,
+        "yaw": currentYaw,
+        "type": "scene",
+        "text": "nouvelleScene",
+        "sceneId": "test"
+    },
+        viewer.getScene());
+    viewer.addScene('test', {
+        "type": "equirectangular",
+        "panorama": "../images/bde.;",
+        "autoRotate": "-1",
+        "autoRotate": false,
+        "showZoomCtrl": false,
+        "compass": false
+    });
+};
+
+
+var selectElmt = document.getElementById("ListeLieux");
+selectElmt.addEventListener("change", function () {
+    let lieux = selectElmt.value;
+    console.log(lieux);
+});
+
+let button = document.getElementById('button');
+button.addEventListener("click", afficherPos);
+*/
 /* Pannellumm */
 viewer = pannellum.viewer('panorama', {
 
@@ -396,76 +451,3 @@ viewer = pannellum.viewer('panorama', {
         },
     }
 });
-
-/*
-viewer = pannellum.viewer('panorama', {
-    "default": {
-        "firstScene": "default_scene_start",
-        "title": "default_title",
-        "author": "default_author",
-        "sceneFadeDuration": 1000,
-        "hotSpotDebug": true,
-        "autoLoad": true,
-        "compass": false
-    },
-    "scenes": {
-        "default_scene_start": {
-            "title": "default_title",
-            "hfov": 120,
-            "pitch": -3,
-            "yaw": 117,
-            "type": "equirectangular",
-            "panorama": "img/" + this.files[0].name
-        }
-    }
-});
-
-for (var i = 1; i < this.files.length; ++i) {
-    var inFile = this.files[i];
-    viewer.addScene(inFile.name, {"panorama": "../images/" + inFile.name});
-}
-
-$('body').on('click', 'button', function() {
-    let inputText = "example hotspot text";
-    let currentPitch = viewer.getPitch();
-    let currentYaw = viewer.getYaw();
-    viewer.addHotSpot({"pitch":currentPitch, "yaw":currentYaw, "type":"info", "text":inputText});
-});
-*/
-
-
-
-let posi = document.getElementById('button');
-posi.addEventListener('click', function () {
-    document.getElementById('pitch').innerHTML = 'Pitch: ' + viewer.getPitch();
-    document.getElementById('yaw').innerHTML = 'Yaw: ' + viewer.getYaw();
-});
-
-let admin = document.getElementById('admin-button');
-admin.addEventListener('click', function () {
-    currentPitch = viewer.getPitch();
-    currentYaw = viewer.getYaw();
-    //viewer.addScene("test", { "panorama": "../images/test.jpg", "hotSpots": [] });
-    viewer.addHotSpot({ "pitch": currentPitch, "yaw": currentYaw, "type": "scene", "text": "je suis un crack", "sceneId": "test" }, viewer.getScene());
-
-});
-x
-const panorama = document.getElementById("panorama");
-const file = document.getElementById("file");
-function displayPhoto(url, filename) {
-    viewer.addScene(filename, { "panorama": url, "autoLoad": true, "hotSpots": [] });
-}
-file.addEventListener("change", function (e) {
-    const file = e.target.files[0];
-    displayPhoto(URL.createObjectURL(file), file.name);
-});
-
-
-// var currentPitch = v.getPitch();
-  //      var currentYaw = v.getYaw();
-  //    v.addHotSpot({"pitch":currentPitch, "yaw":currentYaw, "type":"info", "text":inputText});
-
-
-
-//yourViewer.addScene("yourSceneName", { "panorama": "/path/to/img/img.jpg", "hotSpots": [] });
-
