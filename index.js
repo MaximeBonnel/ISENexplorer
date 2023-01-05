@@ -85,8 +85,6 @@ app.get("/admin", (req, res) => {
     res.sendFile(__dirname + '/front/html/admin.html');
 });
 
-bdd.getImagesNames();
-
 // Après la connection au port
 io.on('connection', (socket) => {
     console.log("Utilisateur connecté");
