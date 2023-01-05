@@ -1,7 +1,15 @@
+if (window.location.href.split('/')[3] != '') {
+    console.log(window.location.href.split('/')[3]);
+    var scene = window.location.href.split('/')[3];
+} else {
+    var scene = "exterieur";
+}
+
 viewer = pannellum.viewer('panorama', {
 
     "default": {
-        "firstScene": window.location.href.split('/')[3],
+
+        "firstScene": scene,
         "sceneFadeDuration": 1000,
         "autoLoad": true,
         "hotSpotDebug": true,
@@ -392,7 +400,7 @@ viewer = pannellum.viewer('panorama', {
         },
     }
 });
-function afficherPos(){
+function afficherPos() {
     currentPitch = viewer.getPitch();
     currentYaw = viewer.getYaw();
     viewer.addHotSpot({
@@ -400,7 +408,8 @@ function afficherPos(){
         "yaw": currentYaw,
         "type": "scene",
         "text": "nouvelleScene",
-        "sceneId": "test"},
+        "sceneId": "test"
+    },
         viewer.getScene());
     viewer.addScene('test', {
         "type": "equirectangular",
@@ -409,12 +418,12 @@ function afficherPos(){
         "autoRotate": false,
         "showZoomCtrl": false,
         "compass": false
-    });  
+    });
 };
 
 
 var selectElmt = document.getElementById("ListeLieux");
-selectElmt.addEventListener("change", function() {
+selectElmt.addEventListener("change", function () {
     let lieux = selectElmt.value;
     console.log(lieux);
 });

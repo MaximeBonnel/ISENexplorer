@@ -10,14 +10,20 @@ mongoose.set('strictQuery', true);
 mongoose.connect("mongodb+srv://admin:thisisasecurepass@isenexplorer.ww6hngj.mongodb.net/Users?retryWrites=true&w=majority", err => {
     if (!err) console.log('bdd connecté');
     else console.log('erreur bdd');
-})
+});
 
 // Collections bdd
 const connectionSchema = new mongoose.Schema({
     id: String,
     psw: String
 });
-const connectionModel = new mongoose.model("info", connectionSchema); // 'infos' is the name of the collection in db
+// 'infos' is the name of the collection in db Users
+const connectionModel = new mongoose.model("info", connectionSchema);
+/*
+existing admin account:
+id:enzo
+psw:123password
+*/
 
 http.listen(4200, () => {
     console.log('Serveur lancé sur le port 4200');
