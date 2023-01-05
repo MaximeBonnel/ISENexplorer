@@ -17,6 +17,10 @@ const connectionSchema = new mongoose.Schema({
     id: String,
     psw: String
 });
+
+// limitation des sockets a 10Mo
+io.setMaxListeners(10 * 1024 * 1024);
+
 // 'infos' is the name of the collection in db Users
 const connectionModel = new mongoose.model("info", connectionSchema);
 /*
