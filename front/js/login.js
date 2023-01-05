@@ -9,6 +9,7 @@ signIn.addEventListener('submit', event => {
         socket.emit("password", [Username.value]);
         socket.on('resPassword', res => {
             if (res == Password.value) {
+                socket.emit("loggedIn", true);
                 console.log("mdp correct");
                 window.location.href = "/html/admin.html";
             } else {

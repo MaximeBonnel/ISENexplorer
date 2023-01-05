@@ -46,8 +46,6 @@ module.exports = {
      * text, pitch, yaw, sceneId: infos du point
      */
     uploadImageInfos: function (imageName, text, pitch, yaw, hotspotId, sceneId) {
-        const uri = "mongodb+srv://admin:thisisasecurepass@isenexplorer.ww6hngj.mongodb.net/Images?retryWrites=true&w=majority";
-        const client = new MongoClient(uri, { useNewUrlParser: true });
         client.connect();
         const collection = client.db('Images').collection('infos');
         collection.insertOne({
@@ -60,6 +58,20 @@ module.exports = {
         });
         console.log('saved infos to db');
         client.close();
+    },
+
+    getImageInfos: function (imageName){
+        client.connect(err => {
+            const db = client.db("Images");
+            const coll = db.collection("infos");
+            if (err) throw err;
+
+            const cursor = coll.find({"image": imageName});
+
+            cursor.forEach((infos) => {
+                console.log(infos);
+            });
+        });
     },
 
     uploadImage: function(data, imgName) {

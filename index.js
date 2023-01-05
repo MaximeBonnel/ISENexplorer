@@ -7,6 +7,8 @@ const io = require('socket.io')(http, {
 const mongoose = require('mongoose');
 const bdd = require('./back/database');
 
+let loggedIn = false;
+
 // BDD
 mongoose.set('strictQuery', true);
 mongoose.connect("mongodb+srv://admin:thisisasecurepass@isenexplorer.ww6hngj.mongodb.net/Users?retryWrites=true&w=majority", err => {
@@ -85,8 +87,6 @@ app.get("/admin", (req, res) => {
     res.sendFile(__dirname + '/front/html/admin.html');
 });
 
-bdd.getImagesNames();
-
 // Après la connection au port
 io.on('connection', (socket) => {
     console.log("Utilisateur connecté");
@@ -104,5 +104,9 @@ io.on('connection', (socket) => {
     // Upload image
     socket.on("upload", (file) => {
         bdd.uploadImage(file[0], file[1]);
+    });
+
+    socket.on("loggedIn", (state) => {
+        loggedIn = state;
     });
 });
