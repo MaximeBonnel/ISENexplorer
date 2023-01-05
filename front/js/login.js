@@ -5,13 +5,17 @@ let Password = document.getElementById("Password");
 signIn.addEventListener('submit', event => {
     event.preventDefault();
 
-    socket.emit("password", [Username.value]);
-    socket.on('resPassword', res => {
-        if (res == Password.value){
-            console.log("mdp correct");
-            window.location.href = "/";
-        } else {
-            console.log("mdp incorrect");
-        }
-    })
+    if (Username.value != '' && Password.value != '') {
+        socket.emit("password", [Username.value]);
+        socket.on('resPassword', res => {
+            if (res == Password.value) {
+                console.log("mdp correct");
+                window.location.href = "/html/admin.html";
+            } else {
+                console.log("mdp incorrect");
+            }
+        })
+    } else {
+        console.log('empty field(s)'); // afficher erreur bla bla
+    }
 });
