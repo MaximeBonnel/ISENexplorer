@@ -428,18 +428,78 @@ v = pannellum.viewer('panorama', {
     }
 });
 
-let adminButton = document.getElementById('admin-button');
-adminButton.addEventListener('click', function () {
-    let nomImg = img.value;
-    console.log(nomImg);
+let j = 26;
+let admin = document.getElementById('admin-button');
+admin.addEventListener('click', function () {
     currentPitch = v.getPitch();
     currentYaw = v.getYaw();
-    v.addHotSpot({ "pitch": currentPitch, "yaw": currentYaw, "type": "scene", "text": "je suis un crack", "sceneId": "test" }, v.getScene());
-    v.addScene("test", {
+    v.addScene("scene-" + j, {
         "autoRotate": "-1",
         "autoRotate": false,
         "showZoomCtrl": false,
         "compass": false, 
         "panorama": "../images/" + nomImg
     });
+    v.addHotSpot({ "pitch": currentPitch, "yaw": currentYaw, "type": "scene", "text": "Nouvelle pièce", "id": "hotspot-" + j, "sceneId": "scene-" + j }, v.getScene());
+    j++;
 });
+
+let lastScene = v.getConfig().scene;
+
+window.addEventListener('click', function () {
+    verifHotSpotsbdd();
+    verifHotSpots();
+    console.log(verifHotSpots())
+    lastScene = v.getConfig().scene
+})
+
+function verifHotSpotsbdd() {
+    let i = 0;
+    let arrayPitch = [];
+    let arrayYaw = [];
+    let arraySceneId = [];
+    let arrayText = []
+    let arrayId = [];
+    let hotSpotsinfo = v.getConfig().hotSpots
+    if (v.getConfig().scene == lastScene) {
+        while (i < hotSpotsinfo.length) {
+
+            arrayPitch[i] = hotSpotsinfo[i].pitch
+            arrayYaw[i] = hotSpotsinfo[i].yaw
+            arraySceneId[i] = hotSpotsinfo[i].sceneId
+            arrayId[i] = hotSpotsinfo[i].id
+            arrayText[i] = hotSpotsinfo[i].text
+            i++;
+        }
+        return [arrayId, arrayText];
+    } else {
+        arrayPitch.length = 0;
+        arrayYaw.length = 0;
+        arraySceneId.length = 0;
+        arrayId.length = 0;
+        arrayText.length = 0;
+    }
+}
+
+function verifHotSpots() {
+    let i = 0;
+    let arrayText = []
+    let arrayId = [];
+    let hotSpotsinfo = v.getConfig().hotSpots
+    if (v.getConfig().scene == lastScene) {
+        while (i < hotSpotsinfo.length) {
+            arrayId[i] = hotSpotsinfo[i].id
+            arrayText[i] = hotSpotsinfo[i].text
+            i++;
+        }
+        return [arrayId, arrayText];
+    } else {
+        console.log("Changement de scène, recliquez une fois")
+        arrayId.length = 0;
+        arrayText.length = 0;
+    }
+}
+function delHotSpot() {
+    const input = document.getElementById('hotSpotDel');
+    v.removeHotSpot(input.value);
+}
