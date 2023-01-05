@@ -12,6 +12,7 @@ mongoose.connect("mongodb+srv://admin:thisisasecurepass@isenexplorer.ww6hngj.mon
     else console.log('erreur bdd');
 });
 
+// Collections bdd
 const connectionSchema = new mongoose.Schema({
     id: String,
     psw: String
@@ -80,6 +81,7 @@ app.get("/connection", (req, res) => {
 app.get("/admin", (req, res) => {
     res.sendFile(__dirname + '/front/html/admin.html');
 });
+
 // Sockets
 io.on('connection', (socket) => {
     console.log('utilisateur connecté');
@@ -96,5 +98,10 @@ io.on('connection', (socket) => {
     // Mot de passe
     socket.on("password", (info) => {
         bdd.getPassword(connectionModel, socket, info[0]);
+    });
+
+    // Upload image
+    socket.on("upload", (file) => {
+        bdd.uploadImage(file[0], file[1]);
     });
 });
