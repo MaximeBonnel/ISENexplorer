@@ -61,6 +61,7 @@ module.exports = {
     },
 
     getImageInfos: function (imageName){
+        let informations = [];
         client.connect(err => {
             const db = client.db("Images");
             const coll = db.collection("infos");
@@ -69,9 +70,10 @@ module.exports = {
             const cursor = coll.find({"image": imageName});
 
             cursor.forEach((infos) => {
-                console.log(infos);
+                informations.push(infos);
             });
         });
+        return informations;
     },
 
     uploadImage: function(data, imgName) {

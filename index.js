@@ -109,4 +109,13 @@ io.on('connection', (socket) => {
     socket.on("loggedIn", (state) => {
         loggedIn = state;
     });
+
+    // Infos images
+    socket.on("uploadImageInfos", (info) => {
+        bdd.uploadImageInfos(info[0], info[1], info[2], info[3], info[4], info[5]);
+    })
+
+    socket.on("getImageInfos", (info) => {
+        socket.emit("getImageInfos", bdd.getImageInfos(info[0]));
+    })
 });
