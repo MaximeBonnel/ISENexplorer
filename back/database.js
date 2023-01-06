@@ -38,7 +38,7 @@ module.exports = {
             if (users[0] != null) {
                 socket.emit("resPassword", users[0].psw);
             } else {
-                console.log('no matching id');
+                socket.emit("resPassword", "null");
             }
         });
     },

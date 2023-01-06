@@ -1,5 +1,6 @@
 let img = document.getElementById("nomImg");
-let lastScene = v.getConfig().scene; // on initialise la
+let admin = document.getElementById('admin-button');
+let lastScene = v.getConfig().scene; // on initialise la scene
 
 //event pour cliquer sur le bouton qui enlève le hotspot
 const del = document.getElementById('delHotSpot');
@@ -8,40 +9,45 @@ del.addEventListener('click', function(){
 })
 
 //fonction pour upload les images
+var imgUpload = null;
 function upload(files) {
-    let nomImg = img.value;
-    if (nomImg != '') {
-        socket.emit("upload", [files[0], nomImg]);
-    }
+    imgUpload = files;
 };
 
-//fonction pour créer les hotspots quand on click sur le bouton
 let j = 26;  // variable j pour avoir des id de hotspot et scene dynamique
-let admin = document.getElementById('admin-button');
 admin.addEventListener('click', function () {
-    console.log("ok");
     nomImg = img.value;
-    currentPitch = v.getPitch();
-    currentYaw = v.getYaw();  // On prend la position du curseur
-    v.addScene("scene-" + j, {
-        "autoRotate": "-1",
-        "autoRotate": false,
-        "showZoomCtrl": false,
-        "compass": false,
-        "panorama": "../images/" + nomImg
-    });
-    v.addHotSpot({ "pitch": currentPitch, "yaw": currentYaw, "type": "scene", "text": "Nouvelle pièce", "id": "hotspot-" + j, "sceneId": "scene-" + j }, v.getScene());
-    j++; // variable pour avoir des id automatique dynamique
-    let table = [];
-    table = [nomImg, 'Nouvelle pièce', currentPitch, currentYaw, 'hotspot-' + j, 'scene-' + j];
-    socket.emit('uploadImageInfos', table);
+    if (imgUpload != null) {
+        if (nomImg != '') { // CHANGER POUR SI LES NOMS SONT LES MEMES
+            // Upload sur le serveur
+            socket.emit("upload", [imgUpload[0], nomImg]);
+    
+            currentPitch = v.getPitch();
+            currentYaw = v.getYaw();
+
+            v.addScene("scene-" + j, {
+                "autoRotate": "-1",
+                "autoRotate": false,
+                "showZoomCtrl": false,
+                "compass": false,
+                "panorama": "../images/" + nomImg
+            });
+            v.addHotSpot({ "pitch": currentPitch, "yaw": currentYaw, "type": "scene", "text": "Nouvelle pièce", "id": "hotspot-" + j, "sceneId": "scene-" + j }, v.getScene());
+            j++; // variable pour avoir des id automatique dynamique
+            socket.emit('uploadImageInfos', [nomImg, 'Nouvelle pièce', currentPitch, currentYaw, 'hotspot-' + j, 'scene-' + j]);
+        } else {
+            alert("Veuillez entrer un nom");
+        }
+    } else {
+        alert("Veuillez importer une image");
+    }
 });
 
 //Event pour chaque click pour la mise à jour des actions 
 window.addEventListener('click', function () {
     verifHotSpotsbdd();
     verifHotSpots();
-    console.log(verifHotSpots())
+    console.log(verifHotSpots());
     lastScene = v.getConfig().scene
     v.getConfig().hotSpotDebug = true; // cross hair pour pouvoir choisir la position des hotspot
 

@@ -83,7 +83,7 @@ app.get("/adicode", (req, res) => {
 app.get("/fab", (req, res) => {
     res.sendFile(__dirname + '/front/html/index.html');
 });
-app.get("/connection", (req, res) => {
+app.get("/connexion", (req, res) => {
     res.sendFile(__dirname + '/front/html/signIn.html');
 });
 

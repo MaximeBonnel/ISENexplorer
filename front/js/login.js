@@ -8,12 +8,13 @@ signIn.addEventListener('submit', event => {
     if (Username.value != '' && Password.value != '') {
         socket.emit("password", [Username.value]);
         socket.on('resPassword', res => {
-            if (res == Password.value) {
+            if (res == 'null') {
+                alert("Nom d'utilisateur incorect");
+            } else if (res == Password.value) {
                 socket.emit("loggedIn", true);
-                console.log("mdp correct");
                 window.location.href = "/html/admin.html";
             } else {
-                console.log("mdp incorrect");
+                alert("mot de passe incorrect");
             }
         })
     } else {
