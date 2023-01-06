@@ -84,9 +84,6 @@ app.get("/connection", (req, res) => {
     res.sendFile(__dirname + '/front/html/signIn.html');
 });
 
-
-
-
 // Après la connection au port
 io.on('connection', (socket) => {
     console.log("Utilisateur connecté");
@@ -106,7 +103,7 @@ io.on('connection', (socket) => {
         bdd.uploadImage(file[0], file[1]);
     });
 
-    // remove iamge
+    // remove image
     socket.on("remove", (file) => {
         bdd.removeImage(file[0]);
     });
