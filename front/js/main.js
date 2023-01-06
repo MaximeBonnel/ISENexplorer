@@ -8,7 +8,7 @@ if (window.location.href.split('/')[3] != '') {
 v = pannellum.viewer('panorama', {
     "default": {
 
-        "firstScene": "exterieur",
+        "firstScene": scene,
         "sceneFadeDuration": 1000,
         "autoLoad": true,
         //Pour avoir les positions
