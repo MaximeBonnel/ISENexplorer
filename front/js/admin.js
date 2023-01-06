@@ -1,5 +1,13 @@
 let img = document.getElementById("nomImg");
+let lastScene = v.getConfig().scene; // on initialise la
 
+//event pour cliquer sur le bouton qui enlève le hotspot
+const del = document.getElementById('delHotSpot');
+del.addEventListener('click', function(){
+    delHotSpot();
+})
+
+//fonction pour upload les images
 function upload(files) {
     let nomImg = img.value;
     if (nomImg != '') {
@@ -7,6 +15,7 @@ function upload(files) {
     }
 };
 
+//fonction pour créer les hotspots quand on click sur le bouton
 let j = 26;  // variable j pour avoir des id de hotspot et scene dynamique
 let admin = document.getElementById('admin-button');
 admin.addEventListener('click', function () {
@@ -21,23 +30,23 @@ admin.addEventListener('click', function () {
         "panorama": "../images/" + nomImg
     });
     v.addHotSpot({ "pitch": currentPitch, "yaw": currentYaw, "type": "scene", "text": "Nouvelle pièce", "id": "hotspot-" + j, "sceneId": "scene-" + j }, v.getScene());
-    j++;
+    j++; // variable pour avoir des id automatique dynamique
     let table = [];
     table = [nomImg, 'Nouvelle pièce', currentPitch, currentYaw, 'hotspot-' + j, 'scene-' + j];
     socket.emit('uploadImageInfos', table);
 });
 
-let lastScene = v.getConfig().scene;
-
+//Event pour chaque click pour la mise à jour des actions 
 window.addEventListener('click', function () {
     verifHotSpotsbdd();
     verifHotSpots();
     console.log(verifHotSpots())
     lastScene = v.getConfig().scene
-    v.getConfig().hotSpotDebug = true;
+    v.getConfig().hotSpotDebug = true; // cross hair pour pouvoir choisir la position des hotspot
 
 })
 
+//Fonction pour faire la transmition vers la bdd des hotspots
 function verifHotSpotsbdd() {
     let i = 0;
     let arrayPitch = [];
@@ -46,7 +55,7 @@ function verifHotSpotsbdd() {
     let arrayText = []
     let arrayId = [];
     let hotSpotsinfo = v.getConfig().hotSpots
-    if (v.getConfig().scene == lastScene) {
+    if (v.getConfig().scene == lastScene) { // si on ne change pas de scène on calcule toutes les infos des hotspots
         while (i < hotSpotsinfo.length) {
 
             arrayPitch[i] = hotSpotsinfo[i].pitch
@@ -57,7 +66,7 @@ function verifHotSpotsbdd() {
             i++;
         }
         return [arrayId, arrayText];
-    } else {
+    } else { // on reset à 0 les hotspot car c'est une scène différente
         arrayPitch.length = 0;
         arrayYaw.length = 0;
         arraySceneId.length = 0;
@@ -65,28 +74,29 @@ function verifHotSpotsbdd() {
         arrayText.length = 0;
     }
 }
-
+//Fonction pour vérifier le nombre de hotspot et pouvoir afficher dans la console les id des hotspot
 function verifHotSpots() {
     let i = 0;
     let arrayText = []
     let arrayId = [];
     let hotSpotsinfo = v.getConfig().hotSpots
-    if (v.getConfig().scene == lastScene) {
+    if (v.getConfig().scene == lastScene) { // si on ne change pas de scène on calcule toutes les infos des hotspots
         while (i < hotSpotsinfo.length) {
             arrayId[i] = hotSpotsinfo[i].id
             arrayText[i] = hotSpotsinfo[i].text
             i++;
         }
         return [arrayId, arrayText];
-    } else {
+    } else { // on reset à 0 les hotspot car c'est une scène différente
         console.log("Changement de scène, recliquez une fois")
         arrayId.length = 0;
         arrayText.length = 0;
     }
 }
-
+//Fonction pour enlever un hotspot
 function delHotSpot() {
     const input = document.getElementById('hotSpotDel');
     v.removeHotSpot(input.value);
     socket.emit("remove", [input.value]);
 }
+

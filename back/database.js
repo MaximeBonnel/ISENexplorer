@@ -44,25 +44,7 @@ module.exports = {
         });
     },
 
-    /* Upload dans la base de données
-    uploadImage: function(data, img) {
-        const uri = "mongodb+srv://admin:thisisasecurepass@isenexplorer.ww6hngj.mongodb.net/Images?retryWrites=true&w=majority";
-        const client = new MongoClient(uri, { useNewUrlParser: true });
-        client.connect(err => {
-            const collection = client.db("Images").collection("image");
-            if (err) throw err;
-
-            const image = {
-                name: img,
-                data: Buffer.from(data)
-            };
-
-            collection.insertOne(image, (err, result) => {
-                console.log('Image saved to database');
-                client.close();
-            });
-        });
-    },
+   
     /**imageName: nom image lié aux infos
      * text, pitch, yaw, sceneId: infos du point
      */
