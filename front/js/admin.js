@@ -3,7 +3,7 @@ let img = document.getElementById("nomImg");
 
 function upload(files) {
     let nomImg = img.value;
-    if (nomImg != ''){
+    if (nomImg != '') {
         socket.emit("upload", [files[0], nomImg]);
     }
 };
@@ -18,11 +18,14 @@ admin.addEventListener('click', function () {
         "autoRotate": "-1",
         "autoRotate": false,
         "showZoomCtrl": false,
-        "compass": false, 
+        "compass": false,
         "panorama": "../images/" + nomImg
     });
     v.addHotSpot({ "pitch": currentPitch, "yaw": currentYaw, "type": "scene", "text": "Nouvelle pièce", "id": "hotspot-" + j, "sceneId": "scene-" + j }, v.getScene());
     j++;
+    let table = [];
+    table = [nomImg, 'Nouvelle pièce', currentPitch, currentYaw, 'hotspot-' + j, 'scene-' + j];
+    socket.emit('uploadImageInfos', table);
 });
 
 let lastScene = v.getConfig().scene;
