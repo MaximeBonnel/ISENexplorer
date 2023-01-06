@@ -5,6 +5,7 @@ const io = require('socket.io')(http, {
     maxHttpBufferSize: 10 * 1024 * 1024  // 10 Mo
 });
 const mongoose = require('mongoose');
+const { getImageInfos } = require('./back/database');
 const bdd = require('./back/database');
 
 let loggedIn = false;
@@ -129,7 +130,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on("getImagesInfos", (info) => {
-        bdd.getImageInfos(info[0]).then((infos) => {
+        bdd.getImageInfos(info).then((infos) => {
             socket.emit("getImagesInfos", infos);
         }) .catch((err) => {
             console.error(err);

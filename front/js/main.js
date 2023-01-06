@@ -384,7 +384,6 @@ v = pannellum.viewer('panorama', {  // Création des scènes
                     "text": "Sortir",
                     "sceneId": "piano",
                     "id": "hotspot-25"
-
                 },
 
             ]
