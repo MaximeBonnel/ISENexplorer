@@ -34,7 +34,7 @@ psw:123password
 */
 
 http.listen(4200, () => {
-    console.log('Serveur lancé sur le port 80');
+    console.log('Serveur lancé sur le port 4200');
 });
 
 // initialisation du chemin d'acces
