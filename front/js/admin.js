@@ -88,3 +88,8 @@ function delHotSpot() {
     const input = document.getElementById('hotSpotDel');
     v.removeHotSpot(input.value);
 }
+
+const del = document.getElementById('delHotSpot');
+del.addEventListener('click', function(){
+    delHotSpot();
+})

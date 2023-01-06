@@ -1,5 +1,4 @@
-if (window.location.href.split('/')[3] != '' && window.location.href.split('/')[3] != 'admin' ) {
-    console.log(window.location.href.split('/')[3]);
+if (window.location.href.split('/')[3] != '' && window.location.href.split('/')[4] != 'admin.html' ) {
     var scene = window.location.href.split('/')[3];
 } else {
     var scene = "exterieur";

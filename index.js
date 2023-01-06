@@ -85,6 +85,8 @@ app.get("/connection", (req, res) => {
 });
 
 
+
+
 // Après la connection au port
 io.on('connection', (socket) => {
     console.log("Utilisateur connecté");
@@ -123,13 +125,16 @@ io.on('connection', (socket) => {
         loggedIn = state;
     });
 
+
+
+
     // Infos images
     socket.on("uploadImageInfos", (info) => {
         bdd.uploadImageInfos(info[0], info[1], info[2], info[3], info[4], info[5]);
     })
 
     socket.on("getImageInfos", (info) => {
-        socket.emit("getImagesInfos", bdd.getImageInfos(info[0]).then((infos) => {
+        socket.emit("getImageInfos", bdd.getImageInfos(info[0]).then((infos) => {
             return infos;
         }) .catch((err) => {
             console.error(err);
