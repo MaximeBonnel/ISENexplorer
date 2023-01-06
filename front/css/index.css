@@ -1,6 +1,52 @@
+
+@media (min-width: 1200px) {
+    html {
+        height: 1200px;
+    }
+}
+
+#panorama {
+    height: 100%;
+    width: 100%;
+}
+
+
+.pnlm-load-box {
+    background-color: rgb(65, 63, 63);
+    color: #000;
+    border-radius: 15%;
+}
+
+.pnlm-box {
+    border-radius: 15%;
+
+}
+
+.pnlm-lbar {
+    border: rgb(0, 255, 94) 1px solid;
+}
+
+.pnlm-lbar-fill {
+    background: rgb(4, 185, 58);
+}
+
+.pnlm-load-button {
+    border-radius: 15%;
+}
+
+.container-fluid {
+    /* overflow:hidden;*/
+    margin-bottom: 10vh;
+}
+
+#admin-button {
+    min-width: 150px;
+    min-height: 50px;
+}
+
 .button-add {
     height: 50px;
-    position: absolute;
+    ;
     right: 20%;
 }
 
@@ -11,16 +57,8 @@ body {
     background-color: #f5f5f5;
 }
 
-#panorama{
-    margin: auto;
-}
 
-.button-admin {
-    position: absolute;
-    bottom: 10%;
-    width: 100px;
-    height: 30px;
-}
+
 
 .form-signin {
     max-width: 330px;
@@ -74,7 +112,7 @@ body {
 
 #marginborder {
     margin-top: 6rem;
-    
+
 }
 
 #mongradient {
@@ -133,7 +171,7 @@ body {
     overflow-x: auto;
     text-align: center;
     white-space: nowrap;
-  
+
 }
 
 form {

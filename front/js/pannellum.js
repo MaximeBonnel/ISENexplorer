@@ -250,7 +250,7 @@ window.pannellum = (function (window, document, undefined) {
             else
                 startOrientation();
         });
-        controls.orientation.addEventListener('mousedown', function (e) { e.stopPropagation(); });
+        controls.orientation.addEventListener('mousedown', function (e) { e.stopPropagation();});
         controls.orientation.addEventListener('touchstart', function (e) { e.stopPropagation(); });
         controls.orientation.addEventListener('pointerdown', function (e) { e.stopPropagation(); });
         controls.orientation.className = 'pnlm-orientation-button pnlm-orientation-button-inactive pnlm-sprite pnlm-controls pnlm-control';
@@ -733,7 +733,6 @@ window.pannellum = (function (window, document, undefined) {
          * @param {MouseEvent} event - Document mouse down event.
          */
         function onDocumentDoubleClick(event) {
-            addHotSpot
         }
 
         /**
@@ -1188,7 +1187,7 @@ window.pannellum = (function (window, document, undefined) {
                 isKeyDown = true;
             }
 
-            // If up arrow or "w" is down
+            // If up arrow or "z" is down
             if (keysDown[2] || keysDown[6]) {
                 // Pan up
                 config.pitch += (speed.pitch * 0.8 + 0.2) * diff;
@@ -1202,7 +1201,7 @@ window.pannellum = (function (window, document, undefined) {
                 isKeyDown = true;
             }
 
-            // If left arrow or "a" is down
+            // If left arrow or "q" is down
             if (keysDown[4] || keysDown[8]) {
                 // Pan left
                 config.yaw += (speed.yaw * 0.8 - 0.2) * diff;

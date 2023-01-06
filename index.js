@@ -85,6 +85,8 @@ app.get("/connection", (req, res) => {
 });
 
 
+
+
 // Après la connection au port
 io.on('connection', (socket) => {
     console.log("Utilisateur connecté");
@@ -121,6 +123,9 @@ io.on('connection', (socket) => {
     socket.on("loggedIn", (state) => {
         loggedIn = state;
     });
+
+
+
 
     // Infos images
     socket.on("uploadImageInfos", (info) => {
