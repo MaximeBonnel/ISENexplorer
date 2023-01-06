@@ -5,12 +5,15 @@ const io = require('socket.io')(http, {
     maxHttpBufferSize: 10 * 1024 * 1024  // 10 Mo
 });
 const mongoose = require('mongoose');
+const { getImageInfos } = require('./back/database');
 const bdd = require('./back/database');
 
 let loggedIn = false;
 
 // BDD
 mongoose.set('strictQuery', true);
+
+//Lien vers la Base de donnée --> à changé si on veut avoir une base de donnée en local
 mongoose.connect("mongodb+srv://admin:thisisasecurepass@isenexplorer.ww6hngj.mongodb.net/Users?retryWrites=true&w=majority", err => {
     if (!err) console.log('bdd connecté');
     else console.log('erreur bdd');
@@ -30,8 +33,8 @@ id:enzo
 psw:123password
 */
 
-http.listen(4200, () => {
-    console.log('Serveur lancé sur le port 4200');
+http.listen(80, () => {
+    console.log('Serveur lancé sur le port 80');
 });
 
 // initialisation du chemin d'acces
@@ -84,9 +87,6 @@ app.get("/connection", (req, res) => {
     res.sendFile(__dirname + '/front/html/signIn.html');
 });
 
-
-
-
 // Après la connection au port
 io.on('connection', (socket) => {
     console.log("Utilisateur connecté");
@@ -106,7 +106,7 @@ io.on('connection', (socket) => {
         bdd.uploadImage(file[0], file[1]);
     });
 
-    // remove iamge
+    // remove image
     socket.on("remove", (file) => {
         bdd.removeImage(file[0]);
     });
@@ -124,16 +124,13 @@ io.on('connection', (socket) => {
         loggedIn = state;
     });
 
-
-
-
     // Infos images
     socket.on("uploadImageInfos", (info) => {
         bdd.uploadImageInfos(info[0], info[1], info[2], info[3], info[4], info[5]);
     });
 
-    socket.on("getImageInfos", (info) => {
-        bdd.getImageInfos(info[0]).then((infos) => {
+    socket.on("getImagesInfos", (info) => {
+        bdd.getImageInfos(info).then((infos) => {
             socket.emit("getImagesInfos", infos);
         }) .catch((err) => {
             console.error(err);

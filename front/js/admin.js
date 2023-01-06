@@ -19,6 +19,7 @@ function upload(files) {
 let j = 26;  // variable j pour avoir des id de hotspot et scene dynamique
 let admin = document.getElementById('admin-button');
 admin.addEventListener('click', function () {
+    console.log("ok");
     nomImg = img.value;
     currentPitch = v.getPitch();
     currentYaw = v.getYaw();  // On prend la position du curseur
@@ -99,4 +100,3 @@ function delHotSpot() {
     v.removeHotSpot(input.value);
     socket.emit("remove", [input.value]);
 }
-
