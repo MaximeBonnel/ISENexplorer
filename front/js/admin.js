@@ -33,8 +33,8 @@ let lastScene = v.getConfig().scene;
 window.addEventListener('click', function () {
     verifHotSpotsbdd();
     verifHotSpots();
-    console.log(verifHotSpots())
-    lastScene = v.getConfig().scene
+    lastScene = v.getConfig().scene;
+    v.getConfig().hotSpotDebug = true;
 })
 
 function verifHotSpotsbdd() {
