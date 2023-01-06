@@ -146,15 +146,6 @@ v = pannellum.viewer('panorama', {
                     "id": "hotspot-9"
                 },
                 {
-                    "pitch": -17,
-                    "yaw": -20,
-                    "type": "scene",
-                    "text": "BDE",
-                    "sceneId": "bde",
-                    "id": "hotspot-10"
-                }
-                ,
-                {
                     "pitch": -8,
                     "yaw": 50,
                     "type": "scene",
@@ -197,29 +188,7 @@ v = pannellum.viewer('panorama', {
 
             ]
         },
-        "bde": {
-            "autoRotate": "-1",
-            "autoRotate": false,
-            "showZoomCtrl": false,
-            "compass": false,
-            "title": "BDE",
-            "hfov": 110,
-            "yaw": -40,
-            "pitch": -16,
-            "type": "equirectangular",
-            "panorama": "../images/bde.png",
-
-            "hotSpots": [
-                {
-                    "pitch": -12,
-                    "yaw": 103,
-                    "type": "scene",
-                    "text": "Sortir",
-                    "sceneId": "couloir1",
-                    "id": "hotspot-14"
-                }
-            ]
-        },
+        
         "jnd": {
             "autoRotate": "-1",
             "autoRotate": false,
