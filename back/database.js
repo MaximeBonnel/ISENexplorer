@@ -3,7 +3,6 @@ const { prototype } = require('events');
 const fs = require('fs');
 
 const uri = "mongodb+srv://admin:thisisasecurepass@isenexplorer.ww6hngj.mongodb.net/Images?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
 
 async function getNames(cursor) {
     const imageNames = [];
@@ -44,45 +43,31 @@ module.exports = {
         });
     },
 
-    /* Upload dans la base de données
-    uploadImage: function(data, img) {
-        const uri = "mongodb+srv://admin:thisisasecurepass@isenexplorer.ww6hngj.mongodb.net/Images?retryWrites=true&w=majority";
-        const client = new MongoClient(uri, { useNewUrlParser: true });
-        client.connect(err => {
-            const collection = client.db("Images").collection("image");
-            if (err) throw err;
-
-            const image = {
-                name: img,
-                data: Buffer.from(data)
-            };
-
-            collection.insertOne(image, (err, result) => {
-                console.log('Image saved to database');
-                client.close();
-            });
-        });
-    },
     /**imageName: nom image lié aux infos
      * text, pitch, yaw, sceneId: infos du point
      */
     uploadImageInfos: function (imageName, text, pitch, yaw, hotspotId, sceneId) {
-        client.connect();
-        const collection = client.db('Images').collection('infos');
-        collection.insertOne({
-            image: imageName,
-            text: text,
-            pitch: pitch,
-            yaw: yaw,
-            hotspotId: hotspotId,
-            sceneId: sceneId
+        const client = new MongoClient(uri, { useNewUrlParser: true });
+        client.connect((err) => {
+            if (err) throw err;
+            const collection = client.db('Images').collection('infos');
+            let data = {
+                image: imageName,
+                text: text,
+                pitch: pitch,
+                yaw: yaw,
+                hotspotId: hotspotId,
+                sceneId: sceneId
+            };
+
+            collection.insertOne(data);
+            console.log('Saved infos to db');
         });
-        console.log('saved infos to db');
-        client.close();
     },
 
     getImageInfos: function (imageName){
         return new Promise((resolve, reject) => {
+            const client = new MongoClient(uri, { useNewUrlParser: true });
             client.connect(async (err) => {
               const db = client.db("Images");
               const coll = db.collection("infos");
@@ -109,22 +94,25 @@ module.exports = {
 
         fs.writeFile('front/images/' + imgName, imageData, err => {
             if (err) console.error(err);
-            else console.log('Image enregistrée');
         });
 
+
         // Enregister le nom de l'image dans la bdd
+        const client = new MongoClient(uri, { useNewUrlParser: true });
         client.connect(err => {
-            const collection = client.db("Images").collection("image");
             if (err) throw err;
+            const collection = client.db("Images").collection("image");
 
             const imageName = {
                 name: imgName
             };
 
-            collection.insertOne(imageName, (err, result) => {
-                client.close();
+            collection.insertOne(imageName, (err) => {
+                if (err) throw err;
             });
         });
+
+        console.log('Image enregistrée');
     },
 
     // Supprimer une image
@@ -135,6 +123,7 @@ module.exports = {
         });
 
         // Supprimer le nom de l'image dans la bdd
+        const client = new MongoClient(uri, { useNewUrlParser: true });
         client.connect(err => {
             const collection = client.db("Images").collection("image");
             if (err) throw err;
@@ -147,21 +136,22 @@ module.exports = {
 
     getImagesNames: function() {
         return new Promise((resolve, reject) => {
+            const client = new MongoClient(uri, { useNewUrlParser: true });
             client.connect(async (err) => {
-              const db = client.db("Images");
-              const coll = db.collection("image");
-              if (err) {
+                const db = client.db("Images");
+                const coll = db.collection("image");
+                if (err) {
                 reject(err);
-              }
+                }
         
-              const cursor = coll.find();
+                const cursor = coll.find();
         
-              try {
+                try {
                 const infos = await getNames(cursor);
                 resolve(infos);
-              } catch (err) {
+                } catch (err) {
                 reject(err);
-              }
+                }
             });
         });
     }

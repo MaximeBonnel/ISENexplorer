@@ -30,8 +30,8 @@ id:enzo
 psw:123password
 */
 
-http.listen(4200, () => {
-    console.log('Serveur lancé sur le port 4200');
+http.listen(80, () => {
+    console.log('Serveur lancé sur le port 80');
 });
 
 // initialisation du chemin d'acces
@@ -124,15 +124,12 @@ io.on('connection', (socket) => {
         loggedIn = state;
     });
 
-
-
-
     // Infos images
     socket.on("uploadImageInfos", (info) => {
         bdd.uploadImageInfos(info[0], info[1], info[2], info[3], info[4], info[5]);
     });
 
-    socket.on("getImageInfos", (info) => {
+    socket.on("getImagesInfos", (info) => {
         bdd.getImageInfos(info[0]).then((infos) => {
             socket.emit("getImagesInfos", infos);
         }) .catch((err) => {

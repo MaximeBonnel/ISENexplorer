@@ -391,4 +391,3 @@ v = pannellum.viewer('panorama', {
         },
     }
 });
-
