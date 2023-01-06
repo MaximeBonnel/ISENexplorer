@@ -1,5 +1,8 @@
-html {
-    height: 1200px;
+
+@media (min-width: 1200px) {
+    html {
+        height: 1200px;
+    }
 }
 
 #panorama {
