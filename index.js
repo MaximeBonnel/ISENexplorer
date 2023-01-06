@@ -124,7 +124,7 @@ io.on('connection', (socket) => {
     })
 
     socket.on("getImageInfos", (info) => {
-        socket.emit("getImagesNames", bdd.getImageInfos(info[0]).then((infos) => {
+        socket.emit("getImagesInfos", bdd.getImageInfos(info[0]).then((infos) => {
             return infos;
         }) .catch((err) => {
             console.error(err);
