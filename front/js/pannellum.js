@@ -693,9 +693,13 @@ window.pannellum = (function (window, document, undefined) {
 
             // Log pitch / yaw of mouse click when debugging / placing hot spots
             if (config.hotSpotDebug) {
-                var coords = mouseEventToCoords(event);
-                console.log('Pitch: ' + coords[0] + ', Yaw: ' + coords[1] + ', Center Pitch: ' +
-                    config.pitch + ', Center Yaw: ' + config.yaw + ', HFOV: ' + config.hfov);
+                hotSpotDebugIndicator.style.display = 'block';
+                // var coords = mouseEventToCoords(event);
+                // console.log('Pitch: ' + coords[0] + ', Yaw: ' + coords[1] + ', Center Pitch: ' +
+                //     config.pitch + ', Center Yaw: ' + config.yaw + ', HFOV: ' + config.hfov);
+            } else {
+                hotSpotDebugIndicator.style.display = 'none';
+
             }
 
             // Turn off auto-rotation if enabled

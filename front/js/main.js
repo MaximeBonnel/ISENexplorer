@@ -1,4 +1,4 @@
-if (window.location.href.split('/')[3] != '') {
+if (window.location.href.split('/')[3] != '' && window.location.href.split('/')[3] != 'admin' ) {
     console.log(window.location.href.split('/')[3]);
     var scene = window.location.href.split('/')[3];
 } else {
@@ -424,14 +424,3 @@ v = pannellum.viewer('panorama', {
     }
 });
 
-// Hot spot creation function 
-
-function hotspot(hotSpotDiv, args) {
-    hotSpotDiv.classList.add('custom-tooltip');
-    var span = document.createElement('span');
-    span.innerHTML = args;
-    hotSpotDiv.appendChild(span);
-    span.style.width = span.scrollWidth - 20 + 'px';
-    span.style.marginLeft = -(span.scrollWidth - hotSpotDiv.offsetWidth) / 2 + 'px';
-    span.style.marginTop = -span.scrollHeight - 12 + 'px';
-};

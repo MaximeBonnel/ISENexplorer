@@ -30,8 +30,7 @@
                 class=" nav nav-pills d-flex flex-sm-fill justify-content-sm-between col-sm-5 col-xs-3 justify-content-around ">
                 <li><a href="/" class="nav-link px-2   link-danger text-warning fs-5"
                         style="--bs-text-opacity: .8;">Accueil</a></li>
-                <li><a href="#" class="nav-link px-2 text-warning link-danger fs-5" style="--bs-text-opacity: .8;">A
-                        propos </a></li>
+          
                 <li><a href="https://www.junia.com/fr/junia/programme-grande-ecole-isen/"
                         class="nav-link px-2 link-danger text-warning fs-5" style="--bs-text-opacity: .8;">Isen Lille
                     </a></li>
@@ -51,16 +50,18 @@
         <button class="button-admin" id="admin-button">Button</button>
     </div>
     <input type="text" name="nomImg" id="nomImg">
-    <input type="file" onchange="upload(this.files)" />
+    <label for="nomImg">Notez le nom de l'image</label>
+    <input type="file" onchange="upload(this.files)"/>
     <input type="text" id="hotSpotDel">
     <label for="hotSpotDel">Notez ici l'id du HotSpot</label>
-    <button onclick="delHotSpot()">Delete</button>
+    <button onclick="delHotSpot()">Delete HotSpot</button>
 
 </body>
 
 <script type="text/javascript" src="../js/pannellum.js"></script>
 <script type="text/javascript" src="../js/libpannellum.js"></script>
 <script>let socket = io();</script>
+<script type="text/javascript" src="../js/main.js"></script>
 <script type="text/javascript" src="../js/admin.js"></script>
 
 </html>
