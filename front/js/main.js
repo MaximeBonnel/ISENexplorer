@@ -1,10 +1,10 @@
-if (window.location.href.split('/')[3] != '' && window.location.href.split('/')[4] != 'admin.html' ) {
-    var scene = window.location.href.split('/')[3];
+if (window.location.href.split('/')[3] != '' && window.location.href.split('/')[4] != 'admin.html' ) { 
+    var scene = window.location.href.split('/')[3]; //on créer une url dynamique sur le client en fonction de l'image
 } else {
     var scene = "exterieur";
 }
 
-v = pannellum.viewer('panorama', {
+v = pannellum.viewer('panorama', {  // Création des scènes
     "default": {
 
         "firstScene": scene,
