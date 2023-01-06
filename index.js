@@ -107,16 +107,15 @@ io.on('connection', (socket) => {
     // remove iamge
     socket.on("remove", (file) => {
         bdd.removeImage(file[0]);
-    })
+    });
 
     // Get images names
     socket.on("getImagesNames", () => {
-        socket.emit("getImagesNames", bdd.getImagesNames().then((infos) => {
-            return infos;
-          })
-          .catch((err) => {
+        bdd.getImagesNames().then((infos) => {
+            socket.emit("getImagesNames", infos);
+        }) .catch((err) => {
             console.error(err);
-          }));
+        });
     });
 
     socket.on("loggedIn", (state) => {
@@ -126,13 +125,13 @@ io.on('connection', (socket) => {
     // Infos images
     socket.on("uploadImageInfos", (info) => {
         bdd.uploadImageInfos(info[0], info[1], info[2], info[3], info[4], info[5]);
-    })
+    });
 
     socket.on("getImageInfos", (info) => {
-        socket.emit("getImagesInfos", bdd.getImageInfos(info[0]).then((infos) => {
-            return infos;
+        bdd.getImageInfos(info[0]).then((infos) => {
+            socket.emit("getImagesInfos", infos);
         }) .catch((err) => {
             console.error(err);
-        }));
-    })
+        });
+    });
 });

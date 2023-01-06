@@ -87,4 +87,5 @@ function verifHotSpots() {
 function delHotSpot() {
     const input = document.getElementById('hotSpotDel');
     v.removeHotSpot(input.value);
+    socket.emit("remove", [input.value]);
 }
