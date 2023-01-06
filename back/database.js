@@ -6,21 +6,21 @@ const uri = "mongodb+srv://admin:thisisasecurepass@isenexplorer.ww6hngj.mongodb.
 
 async function getNames(cursor) {
     const imageNames = [];
-  
-    (await cursor.toArray()).forEach(function(info) {
-      imageNames.push(info.name);
+
+    (await cursor.toArray()).forEach(function (info) {
+        imageNames.push(info.name);
     });
-  
+
     return imageNames;
 }
 
 async function getInfos(cursor) {
     const infos = [];
-  
-    (await cursor.toArray()).forEach(function(info) {
-      infos.push(info);
+
+    (await cursor.toArray()).forEach(function (info) {
+        infos.push(info);
     });
-  
+
     return infos;
 }
 
@@ -65,30 +65,29 @@ module.exports = {
         });
     },
 
-    getImageInfos: function (imageName){
+    getImageInfos: function (imageName) {
         return new Promise((resolve, reject) => {
             const client = new MongoClient(uri, { useNewUrlParser: true });
             client.connect(async (err) => {
-              const db = client.db("Images");
-              const coll = db.collection("infos");
-              if (err) {
-                reject(err);
-              }
-        
-              const cursor = coll.find({"image": imageName});
-        
-              try {
-                const infos = await getInfos(cursor);
-                resolve(infos);
-              } catch (err) {
-                reject(err);
-              }
+                const db = client.db("Images");
+                const coll = db.collection("infos");
+                if (err) {
+                    reject(err);
+                }
+                const cursor = coll.find({ "image": imageName });
+
+                try {
+                    let infos = await getInfos(cursor);
+                    resolve(infos);
+                } catch (err) {
+                    reject(err);
+                }
             });
         });
     },
 
     // Upload une image
-    uploadImage: function(data, imgName) {
+    uploadImage: function (data, imgName) {
         // Enregistrer l'image sur le serveur
         const imageData = Buffer.from(data, 'base64');
 
@@ -116,7 +115,7 @@ module.exports = {
     },
 
     // Supprimer une image
-    removeImage: function(imgName) {
+    removeImage: function (imgName) {
         fs.unlink('front/images/' + imgName, (err) => {
             if (err) throw err;
             else console.log("L'image a été supprimée");
@@ -128,29 +127,29 @@ module.exports = {
             const collection = client.db("Images").collection("image");
             if (err) throw err;
 
-            collection.deleteOne({name: imgName}, (err) => {
+            collection.deleteOne({ name: imgName }, (err) => {
                 if (err) throw err;
             })
         });
     },
 
-    getImagesNames: function() {
+    getImagesNames: function () {
         return new Promise((resolve, reject) => {
             const client = new MongoClient(uri, { useNewUrlParser: true });
             client.connect(async (err) => {
                 const db = client.db("Images");
                 const coll = db.collection("image");
                 if (err) {
-                reject(err);
+                    reject(err);
                 }
-        
+
                 const cursor = coll.find();
-        
+
                 try {
-                const infos = await getNames(cursor);
-                resolve(infos);
+                    const infos = await getNames(cursor);
+                    resolve(infos);
                 } catch (err) {
-                reject(err);
+                    reject(err);
                 }
             });
         });

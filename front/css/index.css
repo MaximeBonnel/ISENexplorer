@@ -1,13 +1,10 @@
 
-@media (min-width: 1200px) {
-    html {
-        height: 1200px;
-    }
-}
 
 #panorama {
     height: 100%;
     width: 100%;
+    border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 
 
@@ -179,3 +176,4 @@ form {
     justify-content: center;
     margin: 0 auto;
 }
+
