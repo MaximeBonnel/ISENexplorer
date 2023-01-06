@@ -106,6 +106,16 @@ io.on('connection', (socket) => {
         bdd.uploadImage(file[0], file[1]);
     });
 
+    // Get images names
+    socket.on("getImagesNames", () => {
+        socket.emit("getImagesNames", bdd.getImagesNames().then((infos) => {
+            return infos;
+          })
+          .catch((err) => {
+            console.error(err);
+          }));
+    });
+
     socket.on("loggedIn", (state) => {
         loggedIn = state;
     });
@@ -116,6 +126,10 @@ io.on('connection', (socket) => {
     })
 
     socket.on("getImageInfos", (info) => {
-        socket.emit("getImageInfos", bdd.getImageInfos(info[0]));
+        socket.emit("getImagesNames", bdd.getImageInfos(info[0]).then((infos) => {
+            return infos;
+        }) .catch((err) => {
+            console.error(err);
+        }));
     })
 });

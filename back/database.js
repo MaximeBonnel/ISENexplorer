@@ -1,8 +1,29 @@
 const MongoClient = require('mongodb').MongoClient;
+const { prototype } = require('events');
 const fs = require('fs');
 
 const uri = "mongodb+srv://admin:thisisasecurepass@isenexplorer.ww6hngj.mongodb.net/Images?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true });
+
+async function getNames(cursor) {
+    const imageNames = [];
+  
+    (await cursor.toArray()).forEach(function(info) {
+      imageNames.push(info.name);
+    });
+  
+    return imageNames;
+}
+
+async function getInfos(cursor) {
+    const infos = [];
+  
+    (await cursor.toArray()).forEach(function(info) {
+      infos.push(info);
+    });
+  
+    return infos;
+}
 
 module.exports = {
     getUsername: function (connectionModel, socket, id) {
@@ -61,19 +82,24 @@ module.exports = {
     },
 
     getImageInfos: function (imageName){
-        let informations = [];
-        client.connect(err => {
-            const db = client.db("Images");
-            const coll = db.collection("infos");
-            if (err) throw err;
-
-            const cursor = coll.find({"image": imageName});
-
-            cursor.forEach((infos) => {
-                informations.push(infos);
+        return new Promise((resolve, reject) => {
+            client.connect(async (err) => {
+              const db = client.db("Images");
+              const coll = db.collection("infos");
+              if (err) {
+                reject(err);
+              }
+        
+              const cursor = coll.find({"image": imageName});
+        
+              try {
+                const infos = await getInfos(cursor);
+                resolve(infos);
+              } catch (err) {
+                reject(err);
+              }
             });
         });
-        return informations;
     },
 
     uploadImage: function(data, imgName) {
@@ -101,15 +127,22 @@ module.exports = {
     },
 
     getImagesNames: function() {
-        client.connect(err => {
-            const db = client.db("Images");
-            const coll = db.collection("image");
-            if (err) throw err;
-
-            const cursor = coll.find();
-
-            cursor.forEach((name) => {
-                console.log(name.name);
+        return new Promise((resolve, reject) => {
+            client.connect(async (err) => {
+              const db = client.db("Images");
+              const coll = db.collection("image");
+              if (err) {
+                reject(err);
+              }
+        
+              const cursor = coll.find();
+        
+              try {
+                const infos = await getNames(cursor);
+                resolve(infos);
+              } catch (err) {
+                reject(err);
+              }
             });
         });
     }
