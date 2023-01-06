@@ -431,6 +431,7 @@ v = pannellum.viewer('panorama', {
 let j = 26;
 let admin = document.getElementById('admin-button');
 admin.addEventListener('click', function () {
+    nomImg = img.value;
     currentPitch = v.getPitch();
     currentYaw = v.getYaw();
     v.addScene("scene-" + j, {
