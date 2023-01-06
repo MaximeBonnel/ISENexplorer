@@ -104,6 +104,11 @@ io.on('connection', (socket) => {
         bdd.uploadImage(file[0], file[1]);
     });
 
+    // remove iamge
+    socket.on("remove", (file) => {
+        bdd.removeImage(file[0]);
+    })
+
     // Get images names
     socket.on("getImagesNames", () => {
         socket.emit("getImagesNames", bdd.getImagesNames().then((infos) => {

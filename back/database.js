@@ -102,6 +102,7 @@ module.exports = {
         });
     },
 
+    // Upload une image
     uploadImage: function(data, imgName) {
         // Enregistrer l'image sur le serveur
         const imageData = Buffer.from(data, 'base64');
@@ -123,6 +124,24 @@ module.exports = {
             collection.insertOne(imageName, (err, result) => {
                 client.close();
             });
+        });
+    },
+
+    // Supprimer une image
+    removeImage: function(imgName) {
+        fs.unlink('front/images/' + imgName, (err) => {
+            if (err) throw err;
+            else console.log("L'image a été supprimée");
+        });
+
+        // Supprimer le nom de l'image dans la bdd
+        client.connect(err => {
+            const collection = client.db("Images").collection("image");
+            if (err) throw err;
+
+            collection.deleteOne({name: imgName}, (err) => {
+                if (err) throw err;
+            })
         });
     },
 
