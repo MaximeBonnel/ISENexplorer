@@ -1,4 +1,3 @@
-v.getConfig().hotSpotDebug = true;
 let img = document.getElementById("nomImg");
 
 function upload(files) {
@@ -33,8 +32,10 @@ let lastScene = v.getConfig().scene;
 window.addEventListener('click', function () {
     verifHotSpotsbdd();
     verifHotSpots();
-    lastScene = v.getConfig().scene;
+    console.log(verifHotSpots())
+    lastScene = v.getConfig().scene
     v.getConfig().hotSpotDebug = true;
+
 })
 
 function verifHotSpotsbdd() {
