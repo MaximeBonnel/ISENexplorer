@@ -11,6 +11,8 @@ let loggedIn = false;
 
 // BDD
 mongoose.set('strictQuery', true);
+
+//Lien vers la Base de donnée --> à changé si on veut avoir une base de donnée en local
 mongoose.connect("mongodb+srv://admin:thisisasecurepass@isenexplorer.ww6hngj.mongodb.net/Users?retryWrites=true&w=majority", err => {
     if (!err) console.log('bdd connecté');
     else console.log('erreur bdd');
